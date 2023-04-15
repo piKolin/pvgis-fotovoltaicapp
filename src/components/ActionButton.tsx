@@ -1,5 +1,8 @@
 import { Text, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
+import { useNavigation } from '@react-navigation/native';
 
 export type Props = {
 	title: string;
@@ -7,10 +10,18 @@ export type Props = {
 	screen: any;
 };
 
+export type NavigationProp = NativeStackNavigationProp<
+	RootStackParamList,
+	'Home'
+>;
+
 const ActionButton = ({ title, color, screen }: Props) => {
+	const navigation = useNavigation<NavigationProp>();
+
 	return (
 		<TouchableOpacity
-			className="flex m-2 flex-1 justify-center items-center border border-gray-400 py-5 rounded bg-white"
+			onPress={() => navigation.navigate(screen)}
+			className="flex m-2 flex-1 justify-center items-center border border-gray-400 py-5 rounded-lg shadow bg-white"
 			style={{
 				borderLeftColor: color,
 				borderLeftWidth: 8,
