@@ -15,7 +15,7 @@ export type NavigationProp = NativeStackNavigationProp<
 	'Home'
 >;
 
-const ActionButton = ({ title, color, screen }: Props) => {
+const ActionButton: React.FC<Props> = ({ title, color, screen }) => {
 	const navigation = useNavigation<NavigationProp>();
 
 	return (

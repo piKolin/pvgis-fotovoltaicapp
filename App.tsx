@@ -6,7 +6,7 @@ import GridTrackingScreen from './src/screens/GridTrackingScreen';
 
 export type RootStackParamList = {
 	Home: undefined;
-	GridTracking: undefined;
+	GridTrackingScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -22,7 +22,11 @@ export default function App() {
 					component={HomeScreen}
 					options={{ headerShown: false }}
 				/>
-				<Stack.Screen name="GridTracking" component={GridTrackingScreen} />
+				<Stack.Screen
+					name="GridTrackingScreen"
+					component={GridTrackingScreen}
+					options={{ headerShown: false }}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
