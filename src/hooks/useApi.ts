@@ -6,7 +6,6 @@ type UseApiResult<T> = {
 	error: Error | null;
 };
 
-// export const useApi = (url) => {
 const useApi = <T>(url: string): UseApiResult<T> => {
 	const [data, setData] = useState<T | null>(null);
 	const [loading, setLoading] = useState<boolean>(true);
