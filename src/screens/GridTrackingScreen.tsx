@@ -13,10 +13,12 @@ import {
 	MOUNTINGPLACE_OPTIONS,
 	PV_TECHNOLOGY_OPTIONS,
 } from '../utils/constants';
-import CustomSlider from '../components/CustomSlider';
-import CustomInput from '../components/CustomInput';
-import CustomDivider from '../components/CustomDivider';
-import CustomDropdown from '../components/CustomDropdown';
+import CustomSlider from '../components/form/CustomSlider';
+import CustomInput from '../components/form/CustomInput';
+import CustomDivider from '../components/form/CustomDivider';
+import CustomDropdown from '../components/form/CustomDropdown';
+import CustomCheckbox from '../components/form/CustomCheckbox';
+import CustomSpacer from '../components/form/CustomSpacer';
 
 export type NavigationProp = NativeStackNavigationProp<
 	RootStackParamList,
@@ -64,7 +66,7 @@ const GridTrackingScreen: React.FC = () => {
 	return (
 		// Upper Area
 		<View className="flex-1 flex-col bg-[#FD8D3C]/[.05]">
-			<View className="flex-row justify-between pt-10 bg-[#FD8D3C]">
+			<View className="flex-row justify-between pt-10 bg-[#FD8D3C] shadow-lg shadow-black/20 rounded-xl">
 				<TouchableOpacity
 					onPress={navigation.goBack}
 					className="flex-row items-center p-4"
@@ -121,15 +123,15 @@ const GridTrackingScreen: React.FC = () => {
 					name="peakpower"
 					control={control}
 					placeholder="1 Kwp"
-					mode="numeric"
+					mode="decimal"
 					maxLenght={3}
-					icon={() => (
+					icon={
 						<SimpleLineIcons
 							name="energy"
 							size={24}
 							color="black"
 						/>
-					)}
+					}
 				/>
 
 				{/* Losses */}
@@ -163,13 +165,17 @@ const GridTrackingScreen: React.FC = () => {
 					placeholder="35º"
 					mode="numeric"
 					maxLenght={3}
-					icon={() => (
+					rules={{ min: 0, max: 100 }}
+					editable={
+						!(disableInclination || disableInclinationAndAzimuth)
+					}
+					icon={
 						<MaterialCommunityIcons
 							name="angle-acute"
 							size={24}
 							color={'black'}
 						/>
-					)}
+					}
 				/>
 
 				{/* Azimuth */}
@@ -177,16 +183,35 @@ const GridTrackingScreen: React.FC = () => {
 					label="Azimuth"
 					name="aspect"
 					control={control}
-					placeholder="35º"
+					placeholder="90º"
 					mode="numeric"
 					maxLenght={3}
-					icon={() => (
+					editable={!disableInclinationAndAzimuth}
+					rules={{ max: 90, min: -90 }}
+					icon={
 						<Ionicons
 							name="compass-outline"
 							size={24}
 							color={'black'}
 						/>
-					)}
+					}
+				/>
+
+				{/* Optimize Inclination */}
+				<CustomCheckbox
+					label="Optimizadores"
+					name="optimalinclination"
+					control={control}
+					color="#FD8D3C"
+					text="Optimizar inclinación"
+				/>
+
+				{/* Optimize Inclination and Azimuth */}
+				<CustomCheckbox
+					name="optimalangles"
+					control={control}
+					color="#FD8D3C"
+					text="Optimizar inclinación y azimuth"
 				/>
 
 				<CustomDivider />
@@ -198,6 +223,9 @@ const GridTrackingScreen: React.FC = () => {
 				>
 					<Text className="text-white text-lg font-bold">Buscar</Text>
 				</TouchableOpacity>
+
+				{/* Spacer */}
+				<CustomSpacer />
 			</ScrollView>
 		</View>
 	);

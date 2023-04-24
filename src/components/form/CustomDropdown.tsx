@@ -62,7 +62,7 @@ const CustomDropdown: React.FC<Props> = ({
 							renderLeftIcon={icon}
 							renderItem={(item) => (
 								<View className="p-4 flex-row justify-between items-center">
-									<Text className="flex-1 text-xs">
+									<Text className="flex-1 text-sm">
 										{item.label}
 									</Text>
 								</View>
@@ -98,11 +98,11 @@ const styles = StyleSheet.create({
 		elevation: 2,
 	},
 	placeholderStyle: {
-		fontSize: 13,
+		fontSize: 14,
 		color: 'lightgray',
 	},
 	selectedTextStyle: {
-		fontSize: 13,
+		fontSize: 14,
 	},
 	iconStyle: {
 		width: 24,

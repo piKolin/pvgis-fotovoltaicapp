@@ -9,8 +9,9 @@ type Props = {
 	mode: InputModeOptions;
 	maxLenght: number;
 	placeholder?: string;
+	editable?: boolean;
 	rules?: object;
-	icon?: () => JSX.Element | null | undefined;
+	icon?: React.ReactNode;
 };
 
 const CustomInput: React.FC<Props> = ({
@@ -20,6 +21,7 @@ const CustomInput: React.FC<Props> = ({
 	mode,
 	maxLenght,
 	placeholder,
+	editable = true,
 	rules,
 	icon,
 }) => {
@@ -43,20 +45,25 @@ const CustomInput: React.FC<Props> = ({
 						</Text>
 						<View className="flex-row items-center">
 							<TextInput
-								className="flex-1 te p-3 border rounded-md border-gray-300 bg-white shadow"
+								className={`flex-1 te p-3 border rounded-md ${
+									error ? 'border-red-300' : 'border-gray-300'
+								} ${
+									editable ? 'bg-white' : 'bg-gray-300'
+								} shadow`}
 								value={value}
 								onChangeText={onChange}
 								onBlur={onBlur}
 								placeholder={placeholder}
+								editable={editable}
 								inputMode={mode}
 								defaultValue={value}
 								maxLength={maxLenght}
 							/>
-							<View className="absolute right-2">{icon?.()}</View>
+							<View className="absolute right-2">{icon}</View>
 						</View>
 
-						{error && (
-							<Text className="text-red-300 text-xs">
+						{error?.message && (
+							<Text className="text-red-400 text-xs pt-1">
 								{error?.message}
 							</Text>
 						)}
