@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "pvgis-fotovoltaicapp",
+    "name": "PVGIS FotovoltaicAPP",
     "slug": "pvgis-fotovoltaicapp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,7 +15,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
