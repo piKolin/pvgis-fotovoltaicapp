@@ -30,7 +30,7 @@ const CustomOptimizedInput: React.FC<Props> = ({
 				name={name}
 				control={control}
 				rules={rules}
-				render={({ field: { onChange, value } }) => (
+				render={({ field: { onChange } }) => (
 					<>
 						{label && (
 							<Text className="text-sm font-bold pb-2 'text-gray-600">
