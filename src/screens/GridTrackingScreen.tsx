@@ -58,18 +58,24 @@ const GridTrackingScreen: React.FC = () => {
 		// navigation.navigate('Location');
 	}, []);
 
-	const { control, handleSubmit, setValue, watch } = useForm<FormData>({
+	const { control, handleSubmit, watch, setValue } = useForm<FormData>({
 		defaultValues: DEFAULT_FORM_VALUES,
 	});
 
+	/* Checkboxes watchers */
 	const disableInclination = watch('optimalinclination');
 	const disableInclinationAndAzimuth = watch('optimalangles');
 
+	/* Custom 'group' behaviour of checkboxes */
 	useEffect(() => {
 		if (disableInclinationAndAzimuth && disableInclination) {
 			setValue('optimalinclination', false);
 		}
 	}, [disableInclinationAndAzimuth]);
+
+	useEffect(() => {
+		if (disableInclinationAndAzimuth) setValue('optimalinclination', false);
+	}, [disableInclination]);
 
 	const onSubmit = (data: FormData) => {
 		console.log(data);

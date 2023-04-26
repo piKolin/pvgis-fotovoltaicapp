@@ -30,7 +30,7 @@ const CustomOptimizedInput: React.FC<Props> = ({
 				name={name}
 				control={control}
 				rules={rules}
-				render={({ field: { onChange } }) => (
+				render={({ field: { onChange, value } }) => (
 					<>
 						{label && (
 							<Text className="text-sm font-bold pb-2 'text-gray-600">
@@ -42,6 +42,8 @@ const CustomOptimizedInput: React.FC<Props> = ({
 								<BouncyCheckbox
 									size={24}
 									text={text}
+									isChecked={value}
+									disableBuiltInState
 									disableText={disableText}
 									fillColor={color}
 									unfillColor="#FFFFFF"
@@ -50,8 +52,8 @@ const CustomOptimizedInput: React.FC<Props> = ({
 										textDecorationLine: 'none',
 										fontSize: 15,
 									}}
-									onPress={(isChecked: boolean) => {
-										onChange(isChecked);
+									onPress={() => {
+										onChange(!value);
 									}}
 									iconComponent={icon}
 								/>
