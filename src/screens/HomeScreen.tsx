@@ -1,10 +1,11 @@
 import { Image, ScrollView, View, SafeAreaView } from 'react-native';
 import React from 'react';
 import ActionButton from '../components/ActionButton';
+import CustomSpacer from '../components/form/CustomSpacer';
 
 const HomeScreen: React.FC = () => {
 	return (
-		<SafeAreaView className="flex-1">
+		<View className="flex-1 pt-6">
 			<ScrollView>
 				{/* Image Logo of European  */}
 				<View className="flex-1 justify-center items-center">
@@ -38,8 +39,9 @@ const HomeScreen: React.FC = () => {
 					screen=""
 				/>
 				<ActionButton title="TMY" color="#31A354" screen="" />
+				<CustomSpacer />
 			</ScrollView>
-		</SafeAreaView>
+		</View>
 	);
 };
 
